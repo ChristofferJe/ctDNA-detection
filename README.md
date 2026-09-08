@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the code developed for the master's thesis, *Deep learning model for fragment-level ctDNA detection*.
+This repository contains the code developed for my research project (master's thesis), *Deep learning model for fragment-level ctDNA detection*.
 
 It includes implementations of all model variants described in the thesis, together with scripts for training, hyperparameter optimisation, fragment-level and sample-level evaluation, and model interpretation.
 
