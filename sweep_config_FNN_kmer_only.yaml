@@ -1,0 +1,51 @@
+program: train_with_yaml.py
+name: pick_fitting_name
+method: bayes
+metric:
+  name: AUC
+  goal: maximize
+parameters:
+  architecture:
+    value: FNN 
+  data_type: 
+    value: kmer_only
+  normalize:  
+    value: True
+  combined_end_motif:
+    value: False
+  early_stopping:
+    value: False
+  early_stopping_patience:
+    value: 10
+  hidden_size: 
+    values: [8, 16, 32, 64, 128, 256, 512]
+  optimizer:
+    values: ["Adam", "RMSprop", "SGD"]
+  momentum:
+    distribution: uniform
+    min: 0.8
+    max: 0.95
+  learning_rate:
+    distribution: log_uniform_values
+    min: 0.0001
+    max: 0.01
+  scheduler:
+    values: ["None", "CosineAnnealingLR", "CyclicalLR", "OneCycleLR"]
+  scheduler_lr_max:
+    distribution: log_uniform_values
+    min: 0.001
+    max: 0.1
+  scheduler_lr_min:
+    distribution: log_uniform_values
+    min: 0.00001
+    max: 0.0001
+  weight_decay:
+    values: [0, 1e-5, 1e-4, 1e-3, 1e-2]
+  loss:
+    value: BCE
+  batch_size:
+    values: [32, 64, 128, 256, 512, 1024]
+  epochs:
+    value: 5
+  log_interval:
+    value: 500

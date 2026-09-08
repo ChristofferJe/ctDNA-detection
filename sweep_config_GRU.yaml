@@ -1,0 +1,53 @@
+program: train_with_yaml.py
+name: pick_fitting_name
+method: bayes
+metric:
+  name: AUC
+  goal: maximize
+parameters:
+  architecture:
+    value: GRU_BI
+  normalize:  
+    value: True
+  combined_end_motif:
+    value: True
+  early_stopping:
+    value: True
+  early_stopping_patience:
+    value: 10
+  gru_hidden_size:
+    values: [32, 64, 128, 256]
+  length_hidden_size: 
+    values: [32, 64, 128, 256]
+  fusion_hidden_size: 
+    values: [64, 128, 256, 512]
+  optimizer:
+    value: "Adam"
+  momentum:
+    distribution: uniform
+    min: 0.8
+    max: 0.95
+  learning_rate:
+    distribution: log_uniform_values
+    min: 0.0001
+    max: 0.01
+  scheduler:
+    values: ["CosineAnnealingLR", "CyclicalLR", "OneCycleLR"]
+  scheduler_lr_max:
+    distribution: log_uniform_values
+    min: 0.001
+    max: 0.1
+  scheduler_lr_min:
+    distribution: log_uniform_values
+    min: 0.00001
+    max: 0.0001
+  weight_decay:
+    values: [1e-4, 1e-3, 1e-2]
+  loss:
+    value: BCE
+  batch_size:
+    values: [128, 256, 512, 1024]
+  epochs:
+    value: 50
+  log_interval:
+    value: 500
